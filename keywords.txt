@@ -3,3 +3,4 @@ turn	KEYWORD2
 getMin	KEYWORD2
 getMax	KEYWORD2
 setLimits	KEYWORD2
+turnAsOne KEYWORD2

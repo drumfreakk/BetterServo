@@ -1,6 +1,6 @@
 #include "BetterServo.h"
 
-void BetterServo::_turnFor(int deg, int step, int wait){
+void BetterServo::_turnForward(int deg, int step, int wait){
   int &pos = BetterServo::_position;
   
   for (pos; pos <= deg; pos += step) {
@@ -20,7 +20,7 @@ void BetterServo::_turnBack(int deg, int step, int wait){
 
 void BetterServo::turn(int deg, int step, int wait){
   if(deg > BetterServo::_position){
-    BetterServo::_turnFor(deg, step);
+    BetterServo::_turnForward(deg, step);
   }
   else if(deg < BetterServo::_position){
     BetterServo::_turnBack(deg, step);
@@ -39,7 +39,9 @@ int BetterServo::setLimits(int min, int max){
 	BetterServo::_maxPos = max;
 }
 
+//TODO: Perhaps other one, if so frequently update _position with Servo::read()
 int BetterServo::getPosition(){
+	//return Servo::read();
 	return BetterServo::_position;
 }
 
