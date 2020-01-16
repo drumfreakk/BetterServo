@@ -24,16 +24,9 @@ void loop() {
 #ifdef TURNASONE
   turnAsOne(vingers, 2, MAXTURN);
   turnAsOne(vingers, 2, MINTURN);  
-#elif OMSTEBEURT
+#elif ONEBYONE
   for(BetterServo &toTurn : vingers){ 
     toTurn.turn(toTurn.getMax());
-    toTurn.turn(toTurn.getMin());
-  }
-#elif HEENTERUG
-  for(BetterServo &toTurn : vingers){ 
-    toTurn.turn(toTurn.getMax());
-  }
-  for(BetterServo &toTurn : vingers){ 
     toTurn.turn(toTurn.getMin());
   }
 #endif
