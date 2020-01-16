@@ -7,27 +7,30 @@
 
 class BetterServo : private Servo
 {
-private:
-	int position = 0;
-
-	int minPos, maxPos;
+protected:
+	int _position = 0;
+	int _minPos, _maxPos;
 	
-	void turnFor(int deg, int step = 1);
-	void turnBack(int deg, int step = 1);
-
+	void _turnFor(int deg, int step = 1, int wait = 15);
+	void _turnBack(int deg, int step = 1, int wait = 15);
+	
 public:
 
-	BetterServo() : minPos(0), maxPos(150){}
-	BetterServo(int min, int max) : minPos(min), maxPos(max){}
+	BetterServo() : _minPos(0), _maxPos(150){}
+	BetterServo(int min, int max) : _minPos(min), _maxPos(max){}
 
 	using Servo::attach;
 
-	void turn(int deg, int step = 1);
+	void turn(int deg, int step = 1, int wait = 15);
 
 	int getMin();
 	int getMax();	
 
+	int getPosition();
+
 	int setLimits(int min, int max);
 };
+
+void turnAsOne(BetterServo *servos, int amount, int deg, int step = 1);
 
 #endif
