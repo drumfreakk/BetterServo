@@ -1,30 +1,8 @@
 #include "BetterServo.h"
 
-void BetterServo::_turnForward(int deg, int step, int wait){
-  int &pos = BetterServo::_position;
-  
-  for (pos; pos <= deg; pos += step) {
-    BetterServo::Servo::write(pos);
-    delay(15);
-  }
-}
-
-void BetterServo::_turnBack(int deg, int step, int wait){
-  int &pos = BetterServo::_position;
-
-  for (pos; pos >= deg; pos -= step) {
-    BetterServo::Servo::write(pos);
-    delay(15);
-  }
-}
-
-void BetterServo::turn(int deg, int step, int wait){
-  if(deg > BetterServo::_position){
-    BetterServo::_turnForward(deg, step);
-  }
-  else if(deg < BetterServo::_position){
-    BetterServo::_turnBack(deg, step);
-  }
+void BetterServo::turn(int deg, int wait){
+	BetterServo::Servo::write(deg);
+	delay(wait);
 }
 
 int BetterServo::getMin(){
@@ -39,28 +17,16 @@ int BetterServo::setLimits(int min, int max){
 	BetterServo::_maxPos = max;
 }
 
-//TODO: Perhaps other one, if so frequently update _position with Servo::read()
 int BetterServo::getPosition(){
-	//return Servo::read();
-	return BetterServo::_position;
+	return Servo::read();
 }
 
-void turnAsOne(BetterServo *servos, int amount, int deg, int step){
-	int pos = servos[0].getPosition();
-	if(pos <= deg){
-		for(int i = pos; i <= deg; i++){
-			for(int j = 0; j < amount; j++){
-				servos[j].turn(i, 1, 0);
-			}
-		}
+
+void BetterServo::turnAsOne(BetterServo *servos, int endPositions[], int amount, int wait){
+	for(int i = 0; i < amount; i++){
+		servos[i].Servo::write(endPositions[i]);
 	}
-	if(pos >= deg){
-		for(int i = pos; i >= deg; i--){
-			for(int j = 0; j < amount; j++){
-				servos[j].turn(i, 1, 0);
-			}
-		}
-	}
+	delay(wait);
 }
 
 

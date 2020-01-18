@@ -8,12 +8,7 @@
 class BetterServo : private Servo
 {
 protected:
-	int _position = 0;
 	int _minPos, _maxPos;
-	
-	/// Turn the servo forwards or backwards to position <deg>, with a step size of <step> (default: 1) amd a de;ay between every step of <wait> ms (default: 15)
-	void _turnForward(int deg, int step = 1, int wait = 15);
-	void _turnBack(int deg, int step = 1, int wait = 15);
 	
 public:
 
@@ -25,8 +20,8 @@ public:
 	using Servo::attached;
 	using Servo::detach;
 
-	/// Turn the servo to position <deg>, with a step size of <step> (default: 1) and a delay between every step of <wait> ms (default: 15)
-	void turn(int deg, int step = 1, int wait = 15);
+	/// Turn the servo to position <deg> and wait <wait> ms (default: 100)
+	void turn(int deg, int wait = 100);
 
 
 	/// Get the minimum and maximum that the servo can turn, set by setLimits()
@@ -38,9 +33,10 @@ public:
 
 	/// Set the limits of the servo
 	int setLimits(int min, int max);
-};
+	
+	/// Turn <amount> servos in the list <servos> to their respective position in <endPositions> position and will then wait <wait> ms (default: 500)
+	static void turnAsOne(BetterServo *servos, int endPositions[], int amount, int wait = 500);
 
-/// Turn <amount> servos in the list <servos> from the same start to end (<deg>) position with an optional step size <step> (default: 1)
-void turnAsOne(BetterServo *servos, int amount, int deg, int step = 1);
+};
 
 #endif
