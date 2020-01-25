@@ -20,8 +20,8 @@ public:
 	using Servo::attached;
 	using Servo::detach;
 
-	/// Turn the servo to position <deg> and wait <wait> ms (default: 100)
-	void turn(int deg, int wait = 100);
+	/// Turn the servo to position <deg> and wait <wait> ms (default: 500)
+	void turn(int deg, int wait = 500);
 
 
 	/// Get the minimum and maximum that the servo can turn, set by setLimits()
@@ -34,8 +34,8 @@ public:
 	/// Set the limits of the servo
 	int setLimits(int min, int max);
 	
-	/// Turn <amount> servos in the list <servos> to their respective position in <endPositions> position and will then wait <wait> ms (default: 500)
-	static void turnAsOne(BetterServo *servos, int endPositions[], int amount, int wait = 500);
+	/// Turn <amount> servos in the list <servos> to their respective position in <endPositions> position and will then wait <wait> ms (default: 1500)
+	static void turnAsOne(BetterServo *servos, int endPositions[], int amount, int wait = 1000);
 
 };
 
