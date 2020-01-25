@@ -1,4 +1,5 @@
 BetterServo	KEYWORD1
+Position	KEYWORD1
 turn	KEYWORD2
 getMin	KEYWORD2
 getMax	KEYWORD2

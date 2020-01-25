@@ -5,6 +5,19 @@
 
 #include "Arduino.h"
 
+#ifndef SERVOS
+#define SERVOS 5
+#endif
+
+struct Position{
+	int positions[SERVOS];
+	int amount;
+	Position(){
+		amount = SERVOS;
+	}
+};
+
+
 class BetterServo : private Servo
 {
 protected:
@@ -33,10 +46,13 @@ public:
 
 	/// Set the limits of the servo
 	int setLimits(int min, int max);
-	
-	/// Turn <amount> servos in the list <servos> to their respective position in <endPositions> position and will then wait <wait> ms (default: 1500)
-	static void turnAsOne(BetterServo *servos, int endPositions[], int amount, int wait = 1000);
-
 };
+
+
+/// Turn <amount> servos in the list <servos> to their respective position in <endPositions> position and will then wait <wait> ms (default: 1500)
+void turnAsOne(BetterServo *servos, int endPositions[], int amount, int wait = 1000);
+
+/// Turn <amount> servos in the list <servos> to their respective position in <endPositions> position and will then wait <wait> ms (default: 1500)
+//void turnAsOneA(BetterServo *servos, Position *endPositions, int wait = 1000);
 
 #endif

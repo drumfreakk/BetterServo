@@ -6,8 +6,8 @@ int pin[5] = {2, 3, 4, 5, 6};   // de pinnen, als je minder dan vijf servos gebr
 
 BetterServo vingers[SERVOS];
 
-int s[2] = {30, 50};
-int e[2] = {120, 140};
+int s[2] = {50, 50};
+int e[2] = {120, 120};
 
 void setup() { 
 	Serial.begin(9600);
@@ -19,6 +19,6 @@ void setup() {
 }
 
 void loop() {    
-	BetterServo::turnAsOne(vingers, s, 2);
-	BetterServo::turnAsOne(vingers, e, 2); 
+	turnAsOne(vingers, s, 2, 2000);
+	turnAsOne(vingers, e, 2, 2000); 
 }

@@ -22,11 +22,10 @@ int BetterServo::getPosition(){
 }
 
 
-void BetterServo::turnAsOne(BetterServo *servos, int endPositions[], int amount, int wait){
+void turnAsOne(BetterServo *servos, int endPositions[], int amount, int wait){
 	for(int i = 0; i < amount; i++){
-		servos[i].Servo::write(endPositions[i]);
+		servos[i].turn(endPositions[i], 0);
 	}
 	delay(wait);
 }
-
 
